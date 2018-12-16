@@ -1,5 +1,6 @@
 <?php
-  include('./db_connection.php');
+  include("db_connection.php");
+  // echo '<h1>SOMETHING Started WORKED</h1>';
 ?>
 
 <html lang="en">
@@ -42,8 +43,7 @@
   $query = "SELECT * FROM orders ORDER BY order_id DESC";
 
   // Execute Query Statement and get our result set
-  if ($result = mysqli_query($connection, $query)) {
-
+ if ($result = mysqli_query($connection, $query)) {
     /* fetch associative array */
     while ($row = mysqli_fetch_assoc($result)) {
        echo '
@@ -63,7 +63,7 @@
 }
 
 /* close connection */
-mysqli_close($connection);
+  mysqli_close($connection);
           ?>
     
       </table>

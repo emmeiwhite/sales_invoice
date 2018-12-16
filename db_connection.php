@@ -1,11 +1,11 @@
 <?php
   // Connection string 
-  $connection = $mysqli_connect('localhost','root','','sales_invoice');
+  $connection = mysqli_connect("localhost", "root", "", "sales_invoice");
 
   /* check connection */
-  if ($mysqli->connect_errno) {
-    printf("Connect failed: %s\n", $mysqli->connect_error);
-    exit();
+  if (mysqli_connect_errno()) {
+      printf("Connect failed: %s\n", mysqli_connect_error());
+      exit();
   }
 
 ?>
