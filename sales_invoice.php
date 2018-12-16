@@ -21,6 +21,8 @@
 
   <section class="container">
     <header class="header-section">
+      <!-- 
+      HARD CODING THE VALUE IN THE CORRECT FORMAT FOR NOW  
       <script>
         $(function(){
           $('#order_date').datepicker({
@@ -28,7 +30,7 @@
             autoclose:true
           })
         })
-      </script>
+      </script> -->
         <?php
           if(isset($_GET["create"])){
           ?>
@@ -58,7 +60,7 @@
 
                             </div>
 
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <h3>Reverse Charge</h3>
 
                                 <input type="text" name="order_no"
@@ -69,12 +71,134 @@
                                 <input type="text" name="order_date"
                                 id="order_date"
                                 class="form-control input-sm"
-                                placeholder="Enter Invoice Date" 
-                                data-provide="datepicker"
-                                readonly/>
+                                placeholder="Enter Invoice Date in the format yy-mm-dd"
+                              />
                             </div>
                         </div>
+
+                          <table id="invoice-item-table" class="table table-bordered table-striped">
+                            <thead>
+                              <tr>
+                                <th>Serial Number </th>  
+                                <th>Item Name</th>  
+                                <th>Quantity</th>  
+                                <th>Price</th>  
+                                <th>Actual Amount</th>  
+                                <th>Tax %</th>  
+                                <th>Total</th>  
+                                <th></th>  
+                              </tr>
+                            </thead>
+
+                             <tr>
+                                <th></th>  
+                                <th></th>  
+                                <th></th>  
+                                <th></th>  
+                                <th></th>  
+                                <th>Rate</th>  
+                                <th>Amount</th>   
+                              </tr>
+
+                              <tr>
+                                <td>
+                                  <span id="sr_no"> 1 </span>       
+                                </td>
+
+                                <td>
+                                  <input type="text"
+                                    name="item_name[]"
+                                    id="item_name1"
+                                    class="form-control input-sm"
+                                  />
+                                </td> 
+
+                                <td>
+                                  <input type="text"
+                                    name="order_item_quantity[]"
+                                    id="order_item_quantity1"
+                                    data-srno="1"
+                                    class="form-control input-sm
+                                    order_item_quantity"
+                                  />
+                                </td> 
+
+                                <td>
+                                  <input type="text"
+                                    name="order_item_price[]"
+                                    id="order_item_price1"
+                                    data-srno="1"
+                                    class="form-control input-sm
+                                    number_only
+                                    order_item_quantity"
+                                  />
+                                </td> 
+
+                                 <td>
+                                  <input type="text"
+                                    name="order_item_actual_amount[]"
+                                    id="order_item_actual_amount1"
+                                    data-srno="1"
+                                    class="form-control input-sm
+                                    number_only
+                                    order_item_actual_amount" readonly
+                                  />
+                                </td> 
+
+                                <td>
+                                  <input type="text"
+                                    name="order_item_tax_rate[]"
+                                    id="order_item_tax_rate1"
+                                    data-srno="1"
+                                    class="form-control input-sm
+                                    number_only
+                                    order_item_tax_rate" 
+                                  />
+                                </td> 
+
+                                 <td>
+                                  <input type="text"
+                                    name="order_item_final_amount[]"
+                                    id="order_item_final_amount1"
+                                    data-srno="1"
+                                    class="form-control input-sm
+                                    number_only
+                                    order_item_final_amount" 
+                                  />
+                                </td> 
+
+                              </tr>
+                          </table>
+                       
+                          <!-- Add Row Event -->
+                        <div align="center">
+                            <button type="button" name="add_row" id="add_row" class="btn btn-success btn-xs">+</button>
+                        </div>  
                     </td>
+                  </tr>
+
+                  <!-- Final Total Amount -->
+
+                  <tr>
+                    <td align="right"><strong>TOTAL</strong></td>
+                    <td align="right">
+                      <strong>
+                        <span id="final_total_amt"></span>
+                      </strong>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="2"></td>
+                  </tr>
+
+              <!-- From value = "1" we can get total items in invoice -->
+                  <tr>
+                     <td colspan="2" align="center">
+                       <input type="hidden" name="total_item" id="total_item" value="1"/>
+
+                        <input type="submit" name="create_invoice" id="create_invoice" class="btn btn-info" value="CREATE"/>
+                     </td>
                   </tr>
               </table>
             </div>
