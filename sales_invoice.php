@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<?php
+  include('./db_connection.php');
+?>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -33,6 +36,36 @@
               <th>DELETE</th>  
             </tr>
           </thead>
+
+          <?php
+              // Prepare Query Statement
+  $query = "SELECT * FROM orders ORDER BY order_id DESC";
+
+  // Execute Query Statement and get our result set
+  if ($result = mysqli_query($connection, $query)) {
+
+    /* fetch associative array */
+    while ($row = mysqli_fetch_assoc($result)) {
+       echo '
+        <tr>
+          <td>'.$row["order_no"].'</td>
+          <td>'.$row["order_date"].'</td>
+          <td>'.$row["order_receiver_name"].'</td>
+          <td>'.$row["order_total_after_tax"].'</td>
+          <td> <a href="./print_invoice.php?pdf=1&id='.$row["order_id"].'">PDF</a></td>
+           <td> <a href="./invoice.php?pdf=1&id='.$row["order_id"].'"><span class="glyphicon glyphicon-edit"></span></a></td>
+        </tr>
+       ';
+    }
+
+    /* free result set */
+    mysqli_free_result($result);
+}
+
+/* close connection */
+mysqli_close($connection);
+          ?>
+    
       </table>
     </main>
 
