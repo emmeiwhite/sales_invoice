@@ -13,21 +13,72 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <title>Sales Invoice | Imran Rafiq Rather</title>
   </head>
   <body>
 
-  <section class="container-fluid">
+  <section class="container">
     <header class="header-section">
-
+      <script>
+        $(function(){
+          $('#order_date').datepicker({
+            format:"yy-mm-dd",
+            autoclose:true
+          })
+        })
+      </script>
         <?php
           if(isset($_GET["create"])){
           ?>
             <!-- Create a form  -->
 
-            
+          <form method="post" id="invoice_form">
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                  <tr>
+                    <td align="center" colspan="2">
+                        <h2>Sales Invoice</h2>
+                    </td>
+                  </tr>
+
+                   <tr>
+
+                    <td colspan="2">
+                        <div class="row">
+                            <div class="col-md-8">
+                              <h3>TO</h3>
+                              <h4><strong>RECEIVER</strong></h4>
+                              <input type="text" name="order_receiver_name" id="order_receiver_name" class="form-control input-sm"
+                              placeholder="Enter Receiver Name" /> 
+
+                               <textarea name="order_receiver_name" id="order_receiver_name" class="form-control input-sm"
+                              placeholder="Enter Billing Address" /> </textarea>
+
+                            </div>
+
+                            <div class="col-md-3">
+                                <h3>Reverse Charge</h3>
+
+                                <input type="text" name="order_no"
+                                id="order_no"
+                                class="form-control input-sm"
+                                placeholder="Enter Invoice Number" />
+
+                                <input type="text" name="order_date"
+                                id="order_date"
+                                class="form-control input-sm"
+                                placeholder="Enter Invoice Date" 
+                                data-provide="datepicker"
+                                readonly/>
+                            </div>
+                        </div>
+                    </td>
+                  </tr>
+              </table>
+            </div>
+          </form>
           <?php
           }else{
         ?>
@@ -101,3 +152,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </body>
 </html>
+
+
+
+
