@@ -21,7 +21,22 @@
 
   <section class="container-fluid">
     <header class="header-section">
+
+        <?php
+          if(isset($_GET["create"])){
+          ?>
+            <!-- Create a form  -->
+
+            
+          <?php
+          }else{
+        ?>
+
         <h1 align="center">INVOICE LIST</h1>
+
+      <div align="right">
+        <a href="sales_invoice.php?create=1" class="btn btn-primary btn-lg">Create Invoice</a>
+      </div>
     </header>
     
     <main>
@@ -67,6 +82,12 @@
           ?>
     
       </table>
+
+      <?php
+          // Closing our else part in case Create button is not clicked
+
+      }
+      ?>
     </main>
 
     
